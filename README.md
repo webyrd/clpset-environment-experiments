@@ -21,3 +21,9 @@ are useful because clpset often produces duplicate answers (when the
 same set can be constructed in multiple ways).
 
 All code tested with Chez Scheme 10.0.0.
+
+Thank you to Michael Ballantyne for encouragement to try the CLP(Set)
+representation of environments.  Thank you to Nada Amin for the
+CLP(Set) code, and to Nada and to Raffi Sanna for discussions and work
+on an improved version of the CLP(Set) code, to be based on
+faster-miniKanren.

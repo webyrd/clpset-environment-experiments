@@ -33,3 +33,10 @@
   (run-unique* (q)
     (== (set ∅ 2 1 2) (set ∅ 1 q 1)))
   '(2))
+
+(test-check "w6"
+  (run-unique* (q)
+    (fresh (x y)
+      (== (list x y) q)
+      (== (set ∅ x 2) (set ∅ y 1))))
+  '((1 2)))

@@ -1,0 +1,162 @@
+%% {log} tests
+%%
+%% using older release of {log}, which is closer to paper description
+%% get it from http://www.math.unipr.it/~gianfr/SETLOG/setlog_4_3.pl
+%%
+%% to get to the {log} prompt, in prolog:
+%%
+%% ?- consult(setlog_4_3).
+%% ?- start.
+%%
+%% then all these examples should run as advertised.
+
+X={x\X}.
+% X = {x\_1}
+% Constraint: set(_1)
+
+X={x\X} & X={y\X}.
+% 4 times
+% X = {x,y\_1}
+% Constraint: set(_1)
+
+{X\R}={Y\S}.
+% Y = X,  
+% S = R
+% Constraint: set(R)
+%
+% R = {X\S},  
+% Y = X
+% Constraint: set(S)
+%
+% Y = X,  
+% S = {X\R}
+% Constraint: set(R)
+%
+% R = {Y\_1},
+% S = {X\_1}
+% Constraint: set(_1)
+
+X={{x\Z}\X}.
+%X = {{x\Z}\_1}
+%Constraint: set(_1), set(Z)
+
+a in {X,b,Y\Z}.
+% X = a
+% Constraint: set(Z)
+%
+% Y = a
+% Constraint: set(Z)
+%
+% Z = {a\_1}
+% Constraint: set(_1)
+
+f(a, {b,c}) neq f(X, {X,Y}).
+% true
+% Constraint: X neq a
+%
+% true
+% Constraint: X neq b, Y neq b
+%
+% true
+% Constraint: X neq c, Y neq c
+%
+% true
+% Constraint: X neq b, X neq c
+%
+% true
+% Constraint: Y neq b, Y neq c
+
+{c\X} neq {b,c}.
+% X = {_1\_2}
+% Constraint: set(_2), _1 neq b, _1 neq c
+%
+% true
+% Constraint: b nin X, set(X)
+
+un({X},{Y\Z},V).
+% V = {X,Y\Z}
+% Constraint:[X neq Y,X nin Z,set(Z)]
+%
+% Y = X,
+% V = {X\Z}
+% Constraint:[X nin Z,set(Z)]
+%
+% Y = X,
+% Z = {X\_1},
+% V = {X\_1}
+% Constraint:[X nin _1]
+%
+% Z = {X\_1},
+% V = {X,Y\_1}
+% Constraint:[X neq Y,X nin _1,set(_1)]
+
+disj({X,Y},{a\Z}).
+% true
+% Constraint:[X neq a,X nin Z,Y neq a,Y nin Z,set(Z)]
+
+nun(X,Y,{a,b}).
+% true
+% Constraint:[a nin X,a nin Y,set(X),set(Y)]
+%
+% true
+% Constraint:[b nin X,b nin Y,set(X),set(Y)]
+%
+% X = {_1\_2}
+% Constraint:[set(_2),_1 neq a,_1 neq b,set(Y)]
+%
+%
+% Y = {_1\_2}
+% Constraint:[set(_2),_1 neq a,_1 neq b,set(X)]
+
+ndisj({a},{X,b}).
+% X = a
+
+un(X,Y,Z) & Z neq {}.
+% X = {_1\_2},
+% Z = {_1\_3}
+% Constraint:[_1 nin _3,_1 nin _2,_1 nin Y,un(_2,Y,_3),set(Y),set(_3)]
+%
+% Y = {_1\_2},
+% Z = {_1\_3}
+% Constraint:[_1 nin _3,_1 nin _2,_1 nin X,un(X,_2,_3),set(X),set(_3)]
+%
+% X = {_1\_2},
+% Y = {_1\_4},
+% Z = {_1\_3}
+% Constraint:[_1 nin _3,_1 nin _2,_1 nin _4,un(_2,_4,_3),set(_3)]
+%
+% X = {_1\_4},
+% Z = {_1\_5}
+% Constraint:[_1 nin _5,_1 nin _4,_1 nin Y,un(_4,Y,_5),set(Y)]
+%
+% Y = {_1\_4},
+% Z = {_1\_5}
+% Constraint:[_1 nin _5,_1 nin _4,_1 nin X,un(X,_4,_5),set(X)]
+%
+% X = {_1\_4},
+% Y = {_1\_6},
+% Z = {_1\_5}
+% Constraint:[_1 nin _5,_1 nin _4,_1 nin _6,un(_4,_6,_5)]
+
+Q = {[a, VA], [b, VB]} & Q = {[L,V]\R} & [L,V] nin R.
+% Q = {[a,VA],[b,VB]},
+% L = a,
+% V = VA,
+% R = {[b,VB]}
+%
+% Q = {[a,VA],[b,VB]},
+% L = a,
+% V = VA,
+% R = {[b,VB]}
+% Constraint:[VA neq VB]
+%
+% Q = {[a,VA],[b,VB]},
+% L = b,
+% V = VB,
+% R = {[a,VA]}
+%
+% Q = {[a,VA],[b,VB]},
+% L = b,
+% V = VB,
+% R = {[a,VA]}
+% Constraint:[VB neq VA]

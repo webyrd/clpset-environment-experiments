@@ -89,6 +89,11 @@
   '(((_.0 _.1) : (=/= (_.0 1) (_.0 2)))
     ;; The first answer is subsumed by the second answer; ideally
     ;; `run-unique` would only return the second answer.
+    ;;
+    ;; Maybe we can do something like answer minimization.  If an
+    ;; answer is produced, maybe there is a way to test all subsuming
+    ;; answers.  In this simple case there are only a couple ways to
+    ;; subsume the first answer
     ((_.0 _.1) : (=/= (_.0 1)))))
 
 (test-check "s1a"

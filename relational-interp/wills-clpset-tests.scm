@@ -87,5 +87,51 @@
       (== (list x y) q)
       (=/= (set ∅ x 2) (set ∅ 1 2))))
   '(((_.0 _.1) : (=/= (_.0 1) (_.0 2)))
-    ;; reifer should discard the first answer, which is subsumed by the second
+    ;; The first answer is subsumed by the second answer; ideally
+    ;; `run-unique` would only return the second answer.
     ((_.0 _.1) : (=/= (_.0 1)))))
+
+(test-check "s1a"
+  (run-unique* (q)
+    (== ∅ (set ∅ ∅)))
+  '())
+
+(test-check "s1b"
+  (run-unique* (q)
+    (== (set ∅ ∅) ∅))
+  '())
+
+(test-check "s2"
+  (run-unique* (q)
+    (fresh (s1 s2)
+      (== (list s1 s2) q)
+      (seto s1)
+      (seto s2)
+      (== (set s1 s2) s2)))
+  '())
+
+(test-check "s3"
+  (run-unique* (q)
+    (fresh (s1 s2 s3)
+      (== (list s1 s2 s3) q)
+      (seto s1)
+      (seto s2)
+      (seto s3)
+      (== (set s1 s2) s3)))
+  '(((_.0 _.1 (set _.0 _.1)) : (set _.0 _.1))))
+
+(test-check "s4"
+  (run-unique* (q)
+    (== (set ∅ q) ∅))
+  '())
+
+(test-check "s5"
+  (run-unique* (q)
+    (seto q)
+    (== (set ∅ q) q))
+  '())
+
+(test-check "s6"
+  (run-unique* (q)
+    (== (set ∅ q) q))
+  '())

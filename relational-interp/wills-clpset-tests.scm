@@ -2,8 +2,6 @@
 (load "../lib/alternative-run-interface/alternative-run-interface.scm")
 (load "../lib/clpset-miniKanren/test-check.scm")
 
-;; This test breaks the implementation of `unify` in `mk.scm`
-
 (test-check "test-pairs-of-sets-unify-nondeterministically"
   (run-unique* (q)
     (fresh (a b c d e f g h s1 s2 s3 s4)

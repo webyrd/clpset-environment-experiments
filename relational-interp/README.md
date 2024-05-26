@@ -90,5 +90,8 @@ or for subsumption detection or answer simplification/canonicalization?
   constraint solving, e-unification, terminating rewrite systems, etc.
   Collect a big list of these techniques.
 
+* explore Version Space Algebras (VSAs), tree automata,
+  e-graphs/equality saturations, etc.
+
 * revisit work on termination analysis, decreasing bounds, static
   analysis, using DFS when possible, etc.

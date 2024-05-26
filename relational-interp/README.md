@@ -49,6 +49,20 @@ or for subsumption detection or answer simplification/canonicalization?
 
 * implement `letrec`
 
+* implement enough of a language to synthesize `append`
+
+* revisit `match` in the relational interpreter, using this
+  representation for the pattern matching environment
+
+* try this environment representation with a relational type
+  inferencer
+
+* revisit mk-in-mk using this representation for environments and
+  substitutions.  For a deep embedding of mk-in-mk, may be able to
+  remove multiple sources of recursive generate-and-test behavior.
+  Revisit my experiments combining shallow and deep mk-in-mk
+  embeddings.
+
 * implement a call-by-name and/or call-by-value version of the
   interpreter, and explore how lazy we can be at the language
   semantics level when combined with lazy constraints such as
@@ -61,3 +75,11 @@ or for subsumption detection or answer simplification/canonicalization?
 * implement co-routining between "serious" conjuncts, ideally based on
   the Extended Andorra Model.  The two recursive eval-expro calls in
   the cons case seems perfect for experimentation.
+
+* explore as many ways as possible of "finitizing" infinite sets or
+  behaviors: lazy evaluation, streams, tabling, abstract domains,
+  CLP(X), Skolemization/Eigen variables, for all and implication (as
+  in Lambda Prolog/lambdaKanren), techniques from program synthesis
+  and constraint solving, e-unification, terminating rewrite systems,
+  etc.  Collect a big list of these techniques.
+ 

@@ -102,9 +102,6 @@
        (eval-listo e-rest env v-rest)))))
 
 
-
-
-
 (test-check "eval-expro-w1"
   (run* (q)
     (eval-expro
@@ -114,8 +111,6 @@
        ,(set ∅ `(f . (closure z z (,(set ∅ 'y) . ,(set ∅ '(y . cat)))))))
      q))
   '(dog))
-
-
 
 (test-check "try-to-break-it-1"
   (run* (q)
@@ -359,32 +354,6 @@
            (set ∅ `(f . (closure z z (,(set ∅ 'y) . ,(set ∅ '(y . cat)))))))))
   '((z z (set ∅ y) (set ∅ (y . cat)))))
 
-#|
-(ino (f . (closure _.0 _.1 (_.2 . _.3)))
-     (set ∅ (f . (closure z z ((set ∅ y) . (set ∅ (y . cat)))))))
-
-"lookupo 4"
-x: f
-env: (#(#() (f)) . #(#() ((f closure z z (#(#() (y)) . #(#() ((y . cat))))))))
-val: (closure #(x) #(e) (#(vars) . #(bindings)))
-vars: #(#() (f))
-bindings: #(#() ((f closure z z (#(#() (y)) . #(#() ((y . cat)))))))
-
-(ino (f closure #(x) #(e) (#(vars) . #(bindings)))
-     #(#() ((f closure z z (#(#() (y)) . #(#() ((y . cat))))))))
-
-((ino (f . (closure _.0 _.1 (_.2 . _.3)))
-      (set ∅ (f . (closure z z ((set ∅ y) . (set ∅ (y . cat)))))))
- :
- (sym _.0)
- (set _.2 _.3)
- (!in (_.0 _.2)))
-
-Exception in car: #<procedure at mk.scm:9714> is not a pair
-Type (debug) to enter the debugger.
-|#
-
-
 (test-check "eval-expro-w2"
   (run* (q)
     (fresh (env)
@@ -434,8 +403,6 @@ Type (debug) to enter the debugger.
      :
      (set _.0 _.1))))
 
-;; hmm--because I was missing absento, I ended up being too strict on
-;; quoting, so I no longer allow quoting pairs.
 (test-check "quine-0"
   (run-unique 1 (q)
     (== '((lambda (x) (list x (list 'quote x)))

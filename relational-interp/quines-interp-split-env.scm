@@ -88,8 +88,8 @@
        (== `(,e1 ,e2) expr)
        (symbolo x)
        (eval-expro e1 env `(closure ,x ,e ,env^))
-       (ext-envo x arg env^ env^^)
        (eval-expro e2 env arg)
+       (ext-envo x arg env^ env^^)
        (eval-expro e env^^ val)))))
 
 (define (eval-listo e* env v*)

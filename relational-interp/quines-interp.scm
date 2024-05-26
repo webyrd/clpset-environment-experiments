@@ -73,9 +73,9 @@
        (eval-listo e* env val)))
     ((fresh (e1 e2 x e env^ arg env^^)
        (== `(,e1 ,e2) expr)
-       (ext-envo x arg env^ env^^)
        (eval-expro e1 env `(closure ,x ,e ,env^))
        (eval-expro e2 env arg)
+       (ext-envo x arg env^ env^^)
        (eval-expro e env^^ val)))))
 
 (define (eval-listo e* env v*)

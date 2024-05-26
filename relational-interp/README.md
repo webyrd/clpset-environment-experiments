@@ -39,6 +39,11 @@ subsume other answers.  One possible approach would be to try to
 simplify each answer produced to see if there is a simpler answer that
 subsumes it, for which the computation should also succeed.
 
+? Can `normalize-set`, which is used in normalization tests in
+../lib/clpset-miniKanren/clpset-tests.scm, be useful in reification or
+the fancier run interfaces, especially for removing duplicate answers
+or for subsumption detection or answer simplification/canonicalization?
+
 * implement an interpreter with a non-empty initial environment
   containing `cons`, `list`, etc.
 

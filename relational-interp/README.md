@@ -82,11 +82,13 @@ or for subsumption detection or answer simplification/canonicalization?
   the cons case seems perfect for experimentation.
 
 * explore as many ways as possible of "finitizing" infinite sets or
-  behaviors: lazy evaluation, streams, tabling, abstract domains,
-  CLP(X), Skolemization/Eigen variables, for all and implication (as
-  in Lambda Prolog/lambdaKanren), techniques from program synthesis
-  and constraint solving, e-unification, terminating rewrite systems,
-  etc.  Collect a big list of these techniques.
+  behaviors: De Bruijn representation of lambda calculus terms,
+  canonicalized terms such as in nominal logic programming and NBE,
+  lazy evaluation, streams, tabling, abstract domains, CLP(X),
+  Skolemization/Eigen variables, for all and implication (as in Lambda
+  Prolog/lambdaKanren), techniques from program synthesis and
+  constraint solving, e-unification, terminating rewrite systems, etc.
+  Collect a big list of these techniques.
 
 * revisit work on termination analysis, decreasing bounds, static
   analysis, using DFS when possible, etc.

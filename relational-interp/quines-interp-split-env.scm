@@ -12,7 +12,6 @@
 ;; rather than a set data structure, to make environments and
 ;; substitutions easier to encode.
 (define empty-env `(,∅ . ,∅))
-
 (define (ext-envo x v env env^)
   (fresh (vars bindings)
     (symbolo x)
@@ -41,14 +40,12 @@
          (!ino `(,x . ,v^) bindings-minus-x-binding)
          (uniono (set ∅ `(,x . ,v^)) bindings-minus-x-binding bindings)
          (== `(,vars . ,(set bindings-minus-x-binding `(,x . ,v))) env^))))))
-
 (define (lookupo x env val)
   (fresh (vars bindings)
     (symbolo x)
     (== `(,vars . ,bindings) env)
     (ino x vars)
     (ino `(,x . ,val) bindings)))
-
 (define (not-in-envo x env)
   (fresh (vars bindings)
     (symbolo x)
@@ -60,7 +57,9 @@
 
 (define (eval-expro expr env val)
   (conde
-    ;; We don't have `absento` in this version of mk.
+    ;; We don't have `absento` in this version of mk, so punt by
+    ;; breaking `quote` into cases, using `=/=`, and avoiding `car`,
+    ;; `cdr`, or other destructors.
     ((== '(quote ()) expr)
      (== '() val)
      (not-in-envo 'quote env))

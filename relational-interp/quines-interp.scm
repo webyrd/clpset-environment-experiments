@@ -47,8 +47,10 @@
   (conde
     ;; We don't have `absento` in this version of mk, so punt by
     ;; breaking `quote` into cases, using `=/=`, and avoiding `car`,
-    ;; `cdr`, or other destructors.  Does `absento` work with the set
-    ;; constraints, in theory?
+    ;; `cdr`, or other destructors.
+    ((== '(quote ()) expr)
+     (== '() val)
+     (not-in-envo 'quote env))
     ((== `(quote ,val) expr)
      (symbolo val)
      (=/= 'closure val)

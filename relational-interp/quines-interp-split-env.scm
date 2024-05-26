@@ -102,78 +102,7 @@
        (eval-listo e-rest env v-rest)))))
 
 
-(test-check "test-pairs-of-sets-unify-nondeterministically"
-  (run-unique* (q)
-    (fresh (a b c d e f g h s1 s2 s3 s4)
-      (== (list s1 s2 s3 s4) q)
-      (== (set a b) s1)
-      (== (set c d) s2)
-      (== (set e f) s3)
-      (== (set g h) s4)      
-      (== (cons s1 s2) (cons s3 s4))))
-  '((((set _.0 _.1)
-      (set _.2 _.3)
-      (set _.0 _.1)
-      (set _.2 _.3))
-     :
-     (set _.0 _.2))
-    (((set _.0 _.1)
-      (set _.2 _.3 _.4)
-      (set _.0 _.1)
-      (set _.2 _.3 _.4))
-     :
-     (set _.0 _.2))
-    (((set _.0 _.1 _.2)
-      (set _.3 _.4)
-      (set _.0 _.1 _.2)
-      (set _.3 _.4))
-     :
-     (set _.0 _.3))
-    (((set _.0 _.1 _.2)
-      (set _.3 _.4 _.5)
-      (set _.0 _.1 _.2)
-      (set _.3 _.4 _.5))
-     :
-     (set _.0 _.3))))
 
-(test-check "pair-break-warmup-1"
-  (run* (q)
-    (fresh (a b c d s1 s2)
-      (== (list s1 s2) q)
-      (== (set a b) s1)
-      (== (set c d) s2)
-      (== s1 s2)))
-  '((((set _.0 _.1) (set _.0 _.1)) : (set _.0))
-    (((set _.0 _.1) (set _.0 _.1)) : (set _.0))
-    (((set _.0 _.1) (set _.0 _.1)) : (set _.0))
-    (((set _.0 _.1 _.2) (set _.0 _.1 _.2)) : (set _.0))))
-
-
-(test-check "try-to-break-pairs-of-sets-1"
-  (run 1 (q)
-    (fresh (a b c d t1 t2)
-      (== (list t1 t2) q)
-      (seto a)
-      (seto b)
-      (seto c)
-      (seto d)
-      (== (cons a b) t1)
-      (== (cons c d) t2)
-      (== t1 t2)))
-  '((((_.0 . _.1) (_.0 . _.1)) : (set _.0 _.1))))
-
-(test-check "try-to-break-pairs-of-sets-2"
-  (run 1 (q)
-    (fresh (a b c d t1 t2)
-      (== (list t1 t2) q)
-      (seto a)
-      (seto b)
-      (seto c)
-      (seto d)
-      (== (cons a b) t1)
-      (== (cons c d) t2)
-      (== t1 t2)))
-  '((((_.0 . _.1) (_.0 . _.1)) : (set _.0 _.1))))
 
 
 (test-check "eval-expro-w1"

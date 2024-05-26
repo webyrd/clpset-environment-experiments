@@ -63,6 +63,11 @@ or for subsumption detection or answer simplification/canonicalization?
   Revisit my experiments combining shallow and deep mk-in-mk
   embeddings.
 
+* revisit NBE using this representation of environments
+
+* revisit relational abstract interpretation, since CLP(Set) also
+  seems handy for simulating gensym
+
 * implement a call-by-name and/or call-by-value version of the
   interpreter, and explore how lazy we can be at the language
   semantics level when combined with lazy constraints such as
@@ -82,4 +87,6 @@ or for subsumption detection or answer simplification/canonicalization?
   in Lambda Prolog/lambdaKanren), techniques from program synthesis
   and constraint solving, e-unification, terminating rewrite systems,
   etc.  Collect a big list of these techniques.
- 
+
+* revisit work on termination analysis, decreasing bounds, static
+  analysis, using DFS when possible, etc.

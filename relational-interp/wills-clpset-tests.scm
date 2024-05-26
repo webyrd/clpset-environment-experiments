@@ -2,6 +2,23 @@
 (load "../lib/alternative-run-interface/alternative-run-interface.scm")
 (load "../lib/clpset-miniKanren/test-check.scm")
 
+;; This test breaks the implementation of `unify` in `mk.scm`
+
+;; The problem is due to a type error in the pair case of
+;; unify, in which unification of the cdrs of a pair are passed an
+;; immature stream rather than a substitution.
+(test-check "pair-break-1"
+  (run* (q)
+    (fresh (a b c d e f g h s1 s2 s3 s4)
+      (== (list s1 s2 s3 s4) q)
+      (== (set a b) s1)
+      (== (set c d) s2)
+      (== (set e f) s3)
+      (== (set g h) s4)      
+      (== (cons s1 s2) (cons s3 s4))))
+  '???)
+
+
 ;; Tests to ensure Will understands how the CLP(Set) set constraints work.
 
 (test-check "w1a"

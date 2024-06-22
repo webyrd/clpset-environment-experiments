@@ -113,27 +113,44 @@
 
 (test-check "evalo-2"
   (run-unique* (q)
-    (evalo '((lambda (y) (((lambda (z) z) (lambda (w) w)) y)) (list 'cat 'dog)) q))
+    (evalo
+     '((lambda (y) (((lambda (z) z) (lambda (w) w)) y))
+       (list 'cat 'dog))
+     q))
   '((cat dog)))
 
 (test-check "evalo-3"
   (run-unique* (q)
-    (evalo '((lambda (y) (((lambda (y) y) (lambda (y) y)) y)) (list 'cat 'dog)) q))
+    (evalo
+     '((lambda (y) (((lambda (y) y) (lambda (y) y)) y))
+       (list 'cat 'dog))
+     q))
   '((cat dog)))
 
 (test-check "evalo-4"
   (run-unique* (q)
-    (evalo '(((lambda (list) (list list)) (lambda (list) list)) (list 'cat 'dog)) q))
+    (evalo
+     '(((lambda (list) (list list)) (lambda (list) list))
+       (list 'cat 'dog))
+     q))
   '((cat dog)))
 
 (test-check "evalo-5"
   (run-unique* (q)
-    (evalo '(((lambda (x) (lambda (y) (list x y))) 'cat) 'dog) q))
+    (evalo
+     '(((lambda (x) (lambda (y) (list x y)))
+        'cat)
+       'dog)
+     q))
   '((cat dog)))
 
 (test-check "evalo-6"
   (run-unique* (q)
-    (evalo '(((lambda (x) (lambda (x) (list x x))) 'cat) 'dog) q))
+    (evalo
+     '(((lambda (x) (lambda (x) (list x x)))
+        'cat)
+       'dog)
+     q))
   '((dog dog)))
 
 
@@ -245,7 +262,10 @@
       (!ino 'lambda env)
       (!ino 'list env)
       (!ino 'quote env)
-      (eval-expro `((lambda (y) ,e) (list 'cat 'dog)) env '(cat dog))))
+      (eval-expro
+       `((lambda (y) ,e) (list 'cat 'dog))
+       env
+       '(cat dog))))
   '(((y _.0)
      :
      (set _.0)
